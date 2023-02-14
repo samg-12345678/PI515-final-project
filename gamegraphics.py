@@ -1,9 +1,10 @@
 #https://mcsp.wartburg.edu/zelle/python/graphics/graphics.pdf
+import Match
 import random
 from graphics import *
 
 colorList=["Sienna","Old Lace"]
-addColorList=["pink","Light Green","red","orange"]
+shopColorList=["pink","Light Green","red","orange"]
 orderScoopCount=4
 scoopCount=0
 scoopYDistance=200
@@ -59,17 +60,21 @@ def updateScreen():
   clear(win)
   drawTimer()
   drawCone(0,150) 
+  orderList = []
   for scoop in range(0,orderScoopCount) :
     orderScoopColor=colorList[random.randrange(0,len(colorList))]
     drawScoop(orderScoopColor,50,orderScoopYDistance)
     orderScoopYDistance-=20
+    orderList.append(orderScoopColor)
+    print(orderList)
   for box in range(0,boxCount):
     drawBoxes(colorList[box],boxXDistance,win)
     boxXDistance+=50
   drawCone(260,150)
   
-
+#this runs the game
 while True:
+  inputList = []
   updateScreen()
   for scoop in range(0,orderScoopCount) :
   # to limit the number of scoops use a while loop | example: while scoopCount<orderScoopCount :
@@ -79,6 +84,8 @@ while True:
       for box in range(0,boxCount):
         if clickPoint.getX()<boxXDistance2:
           scoopColor=colorList[box]
+          inputList.append(scoopColor)
+          print(inputList)
           break
         else:
           boxXDistance2+=50
@@ -100,17 +107,17 @@ while True:
     if orderCount == 3: # number of orders to visit shop
       shopWin = GraphWin("Upgrades Shop",400,400)
       boxXDistance=0 
-      for box in range(0,len(addColorList)):
-        drawBoxes(addColorList[box],boxXDistance,shopWin)
+      for box in range(0,len(shopColorList)):
+        drawBoxes(shopColorList[box],boxXDistance,shopWin)
         boxXDistance+=50
       timerText=Text(Point(200,50), "Welcome to the Upgrades Shop!")
       timerText.draw(shopWin)
       shopClickPoint = shopWin.getMouse()
-      if shopClickPoint.getY()>300 and shopClickPoint.getX()<(20+(len(addColorList)*50)) and shopClickPoint.getX()>30:
-        for box in range(0,len(addColorList)):
+      if shopClickPoint.getY()>300 and shopClickPoint.getX()<(20+(len(shopColorList)*50)) and shopClickPoint.getX()>30:
+        for box in range(0,len(shopColorList)):
           if shopClickPoint.getX()<shopBoxXDistance:
-            colorList.append(addColorList[box])
-            addColorList.remove(addColorList[box])
+            colorList.append(shopColorList[box])
+            shopColorList.remove(shopColorList[box])
             break
           else:
             shopBoxXDistance+=50

@@ -1,7 +1,5 @@
-def match(str1,str2):
-  if str1 == str2:
-    return True
-  else:
+def match(list1,list2):
+ for i in range(len(list1)):
+  if list1[i] != list2[i]:
     return False
-
-      
+  return True
