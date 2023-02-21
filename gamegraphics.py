@@ -63,14 +63,14 @@ def updateScreen():
   boxCount=len(colorList)
   clear(win)
   drawTimer()
-  drawCone(0,150) 
+  drawCone(0,150)
+  global orderList
   orderList = []
   for scoop in range(0,orderScoopCount) :
     orderScoopColor=colorList[random.randrange(0,len(colorList))]
     drawScoop(orderScoopColor,50,orderScoopYDistance)
     orderScoopYDistance-=20
     orderList.append(orderScoopColor)
-    print(orderList)
   for box in range(0,boxCount):
     drawBoxes(colorList[box],boxXDistance,win)
     boxXDistance+=50
@@ -92,7 +92,6 @@ while True:
         if clickPoint.getX()<boxXDistance2:
           scoopColor=colorList[box]
           inputList.append(scoopColor)
-          print(inputList)
           break
         else:
           boxXDistance2+=50
