@@ -1,8 +1,6 @@
 import time
 
-timer = 20
-
-for x in range(timer, 0, -1):
-  time.sleep(1)
-  print(x)
-print("Times up")
+def Time(timer):
+  for x in range(timer, 0, -1):
+    time.sleep(1)
+    return(x)

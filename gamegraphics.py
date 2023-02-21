@@ -1,7 +1,9 @@
 #https://mcsp.wartburg.edu/zelle/python/graphics/graphics.pdf
 import Match
 import random
+import time
 from graphics import *
+aloo = Image(Point(100,100),"JumpPY.png")
 
 colorList=["Sienna","Old Lace"]
 shopColorList=["pink","Light Green","red","orange"]
@@ -17,6 +19,7 @@ shopName="Ice Cream Shop"
 
 win = GraphWin(shopName,400,400)
 win.setBackground("Light Blue")
+
 
 def drawBoxes(color,boxX,winName):
   box=Rectangle(Point(30+boxX,300),Point(80+boxX,400))
@@ -42,6 +45,7 @@ def drawCone(coneX,coneY):
   cone.draw(win)
 
 def drawTimer():
+  global timerText
   timerText=Text(Point(300,50), "Timer:")
   timerText.draw(win)
 
@@ -71,11 +75,14 @@ def updateScreen():
     drawBoxes(colorList[box],boxXDistance,win)
     boxXDistance+=50
   drawCone(260,150)
-  
+
+timer=20
+
 #this runs the game
 while True:
   inputList = []
   updateScreen()
+  # aloo.draw(win)
   for scoop in range(0,orderScoopCount) :
   # to limit the number of scoops use a while loop | example: while scoopCount<orderScoopCount :
     boxCount=len(colorList)
