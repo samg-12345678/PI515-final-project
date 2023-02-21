@@ -107,6 +107,10 @@ while True:
     #     if scoopYDistance<200:
     #      scoopYDistance+=20
     if scoopCount==orderScoopCount: # replace with conditional that checks if "serve" button was clicked ?
+      if Match.match(orderList,inputList): 
+        print("Correct")
+      else:
+        print("Incorrect")
       updateScreen()
       scoopYDistance=200
       scoopCount=0
